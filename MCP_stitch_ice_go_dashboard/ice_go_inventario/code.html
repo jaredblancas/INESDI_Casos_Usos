@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICE-GO | Inventario</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6faff;
+        }
+        .sidebar-active-pill {
+            position: relative;
+        }
+        /* Custom elevation for Level 1 Cards */
+        .card-elevation {
+            box-shadow: 0 1px 3px 0 rgba(14, 165, 233, 0.05), 0 1px 2px -1px rgba(14, 165, 233, 0.05);
+        }
+        /* Tonal layering for low stock */
+        .stock-low-row {
+            border-left: 4px solid #de8712;
+        }
+        /* Desaturated effect for out of stock */
+        .out-of-stock-row {
+            opacity: 0.65;
+            background-color: #f8fafc;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#dee3e9",
+                      "secondary-fixed": "#d3e4fe",
+                      "secondary-container": "#d0e1fb",
+                      "inverse-primary": "#89ceff",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "on-primary-fixed": "#001e2f",
+                      "tertiary-fixed-dim": "#ffb86e",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#c9e6ff",
+                      "inverse-surface": "#2c3135",
+                      "surface-container": "#eaeef4",
+                      "tertiary-fixed": "#ffdcbd",
+                      "primary-fixed-dim": "#89ceff",
+                      "primary": "#006591",
+                      "surface-dim": "#d6dae0",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#e4e8ee",
+                      "tertiary": "#8a5100",
+                      "on-tertiary-fixed": "#2c1600",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-primary-container": "#003751",
+                      "tertiary-container": "#de8712",
+                      "on-surface": "#171c20",
+                      "primary-container": "#0ea5e9",
+                      "outline-variant": "#bec8d2",
+                      "background": "#f6faff",
+                      "on-secondary-container": "#54647a",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#006591",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#edf1f7",
+                      "surface-container-low": "#f0f4fa",
+                      "surface-container-highest": "#dee3e9",
+                      "secondary": "#505f76",
+                      "on-primary-fixed-variant": "#004c6e",
+                      "on-error": "#ffffff",
+                      "on-background": "#171c20",
+                      "on-surface-variant": "#3e4850",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#f6faff",
+                      "on-tertiary-fixed-variant": "#693c00",
+                      "surface": "#f6faff",
+                      "on-tertiary-container": "#4d2b00",
+                      "outline": "#6e7881",
+                      "on-secondary-fixed": "#0b1c30"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "2xl": "48px",
+                      "xs": "4px",
+                      "sidebar-width": "240px",
+                      "lg": "24px",
+                      "3xl": "64px",
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "mono-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "mono-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface flex flex-col py-lg px-md z-50">
+<div class="mb-2xl px-sm flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white fill-icon">icecream</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-white tracking-tight">ICE-GO</h1>
+</div>
+<nav class="flex-1 space-y-base">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-fixed-dim">dashboard</span>
+<span class="font-body-md text-body-md text-surface-variant">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-fixed-dim">shopping_cart</span>
+<span class="font-body-md text-body-md text-surface-variant">Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-fixed-dim">groups</span>
+<span class="font-body-md text-body-md text-surface-variant">Clients</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary rounded-lg transition-all shadow-lg shadow-primary-container/20" href="#">
+<span class="material-symbols-outlined fill-icon">inventory_2</span>
+<span class="font-body-md text-body-md font-semibold">Inventario</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-fixed-dim">help</span>
+<span class="font-body-md text-body-md text-surface-variant">FAQs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-fixed-dim">analytics</span>
+<span class="font-body-md text-body-md text-surface-variant">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-white/10 pt-lg">
+<div class="flex items-center gap-md px-sm mb-md">
+<div class="relative">
+<img alt="Manager Profile" class="w-10 h-10 rounded-full object-cover border border-white/20" data-alt="A professional headshot of a Hispanic male manager in his late 30s with a warm smile, wearing a sharp business casual outfit. The lighting is bright and airy, consistent with a modern minimalist office aesthetic. The background is a clean, out-of-focus interior with soft blue and white tones to match the ICE-GO branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMTtlYOJursFKwnG5TJtt82spKfQjvSBPLpdMzh2B1IQmRiWjK-YA9A7PN2Ldnu-mENEgFKu7uewRT69cjp4nOOwm8BZ-bvyVY7RcF8weCeg4Pxmnq9yoKGnRRSy5nhb0tAwsLNdbghhntTxtBDRf4PCXZ0RSwcxYHCzz0mFBlfIQ7fZneAEAKuFrHqpoBzZkYg8Avzjwr2W_0v8l749hk4GMJB4ybL9F1ufy7b5D0QrI7SpKnWh47GykqqD65JK2c2C1GGB6lM_s"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-inverse-surface rounded-full"></div>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-white font-bold truncate">Alejandro G.</p>
+<p class="text-[10px] text-surface-variant uppercase tracking-wider">Administrador</p>
+</div>
+</div>
+<button class="w-full flex items-center gap-md px-md py-sm text-error/80 hover:bg-error/10 hover:text-error rounded-lg transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Cerrar sesión</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width min-h-screen p-lg max-w-[1440px] mx-auto">
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Inventario</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión de productos y stock en tiempo real.</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="pl-10 pr-md py-2 bg-white border border-outline-variant rounded-lg w-64 focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all font-body-md text-body-md" placeholder="Buscar producto..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary px-lg py-2 rounded-lg font-body-md font-semibold flex items-center gap-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary-container/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Nuevo producto
+                </button>
+</div>
+</header>
+<!-- Stats Chips -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-white p-md rounded-xl card-elevation border border-outline-variant/50 flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined fill-icon">inventory</span>
+</div>
+<div>
+<p class="text-on-surface font-headline-md text-headline-md font-bold">12</p>
+<p class="text-on-surface-variant text-label-md font-medium uppercase tracking-wider">Productos Activos</p>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl card-elevation border-l-4 border-l-error border-y border-r border-outline-variant/50 flex items-center gap-md">
+<div class="w-12 h-12 bg-error-container/20 rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined fill-icon">error_outline</span>
+</div>
+<div>
+<p class="text-on-surface font-headline-md text-headline-md font-bold">3</p>
+<p class="text-on-surface-variant text-label-md font-medium uppercase tracking-wider">Productos Agotados</p>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl card-elevation border border-outline-variant/50 flex items-center gap-md">
+<div class="w-12 h-12 bg-secondary-container/30 rounded-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined fill-icon">payments</span>
+</div>
+<div>
+<p class="text-on-surface font-headline-md text-headline-md font-bold">$8,450</p>
+<p class="text-on-surface-variant text-label-md font-medium uppercase tracking-wider">Valor Total</p>
+</div>
+</div>
+</section>
+<!-- Product Table Card -->
+<div class="bg-white rounded-xl card-elevation border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest">Producto</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest">Categoría</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest">Precio</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest text-center">Stock</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest">Estado</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-widest text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#5D4037]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Chocolate</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Clásicos</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$40.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center">28</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Disponible</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#E91E63]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Fresa</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Clásicos</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$40.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center">15</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Disponible</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 3 - Low Stock -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors stock-low-row">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#FFB300]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Mango</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Frutas</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$45.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center text-tertiary font-bold">5</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Stock bajo</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#FFF9C4] border border-outline-variant"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Vainilla</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Clásicos</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$40.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center">32</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Disponible</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 5 - Low Stock -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors stock-low-row">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#CDDC39]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Limón</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Frutas</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$45.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center text-tertiary font-bold">2</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Stock bajo</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 6 - Out of Stock -->
+<tr class="hover:bg-surface-container-low transition-colors out-of-stock-row">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#80CBC4]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Menta</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Especiales</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$50.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant cursor-not-allowed opacity-50"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center text-error font-bold">0</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Agotado</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-primary-container/[0.03] transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#FFCC80]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Durazno</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Frutas</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$45.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center">18</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Disponible</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+<!-- Row 8 - Out of Stock -->
+<tr class="hover:bg-surface-container-low transition-colors out-of-stock-row">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-[#212121]"></span>
+<span class="font-body-md text-body-md font-medium">Helado de Oreo</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant font-body-md">Especiales</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm font-semibold">$55.00</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant cursor-not-allowed opacity-50"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-mono-sm text-mono-sm w-8 text-center text-error font-bold">0</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Agotado</span>
+</td>
+<td class="px-lg py-md text-right space-x-sm">
+<button class="text-primary hover:underline font-body-md font-medium text-sm">Editar</button>
+<button class="text-error/70 hover:text-error hover:underline font-body-md font-medium text-sm">Eliminar</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-md bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between">
+<p class="text-label-md text-outline font-body-md">Mostrando 8 de 12 productos</p>
+<div class="flex gap-sm">
+<button class="px-3 py-1 border border-outline-variant rounded-md text-sm disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded-md text-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md text-sm">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md text-sm">Siguiente</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction for stock buttons (Visual feedback only for this static demo)
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.textContent.trim() === 'add' || this.textContent.trim() === 'remove') {
+                    this.classList.add('scale-90');
+                    setTimeout(() => this.classList.remove('scale-90'), 100);
+                }
+            });
+        });
+    </script>
+</body></html>

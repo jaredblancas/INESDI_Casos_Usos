@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICE-GO | CRM &amp; Logistics - FAQs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#de8712",
+                    "surface-dim": "#d6dae0",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#2c1600",
+                    "background": "#f6faff",
+                    "surface-container-low": "#f0f4fa",
+                    "on-secondary-container": "#54647a",
+                    "error": "#ba1a1a",
+                    "primary": "#006591",
+                    "inverse-surface": "#2c3135",
+                    "outline-variant": "#bec8d2",
+                    "surface-container-high": "#e4e8ee",
+                    "surface": "#f6faff",
+                    "inverse-primary": "#89ceff",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-secondary-fixed": "#0b1c30",
+                    "surface-tint": "#006591",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-surface": "#171c20",
+                    "on-tertiary-container": "#4d2b00",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary": "#505f76",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-variant": "#dee3e9",
+                    "inverse-on-surface": "#edf1f7",
+                    "surface-container-highest": "#dee3e9",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "tertiary": "#8a5100",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#6e7881",
+                    "surface-bright": "#f6faff",
+                    "primary-fixed-dim": "#89ceff",
+                    "primary-fixed": "#c9e6ff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "on-background": "#171c20",
+                    "primary-container": "#0ea5e9",
+                    "secondary-container": "#d0e1fb",
+                    "on-surface-variant": "#3e4850",
+                    "tertiary-fixed": "#ffdcbd",
+                    "surface-container": "#eaeef4",
+                    "on-primary-container": "#003751"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "sidebar-width": "240px",
+                    "base": "4px",
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "2xl": "48px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active-pill {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- SideNavBar Structure -->
+<aside class="fixed h-full w-[240px] left-0 top-0 bg-inverse-surface dark:bg-on-surface border-r border-outline-variant flex flex-col py-lg z-50">
+<!-- Brand Header -->
+<div class="px-md mb-3xl">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary-fixed">ICE-GO</h1>
+<p class="font-label-md text-label-md text-surface-variant opacity-70">CRM &amp; Logistics</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-sm space-y-base">
+<!-- Inicio -->
+<a class="flex items-center gap-md px-md py-sm text-surface-variant hover:text-on-primary-fixed-variant hover:bg-on-surface-variant/10 transition-colors duration-200 cursor-pointer rounded-lg active:scale-95 group" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Inicio</span>
+</a>
+<!-- Pedidos -->
+<a class="flex items-center gap-md px-md py-sm text-surface-variant hover:text-on-primary-fixed-variant hover:bg-on-surface-variant/10 transition-colors duration-200 cursor-pointer rounded-lg active:scale-95 group" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Pedidos</span>
+</a>
+<!-- CRM -->
+<a class="flex items-center gap-md px-md py-sm text-surface-variant hover:text-on-primary-fixed-variant hover:bg-on-surface-variant/10 transition-colors duration-200 cursor-pointer rounded-lg active:scale-95 group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">CRM</span>
+</a>
+<!-- Inventario -->
+<a class="flex items-center gap-md px-md py-sm text-surface-variant hover:text-on-primary-fixed-variant hover:bg-on-surface-variant/10 transition-colors duration-200 cursor-pointer rounded-lg active:scale-95 group" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventario</span>
+</a>
+<!-- FAQs (ACTIVE) -->
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed bg-on-secondary-fixed-variant rounded-lg border-l-4 border-primary-container sidebar-active-pill cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span class="font-label-md text-label-md font-semibold">FAQs</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-md px-md py-sm text-surface-variant hover:text-on-primary-fixed-variant hover:bg-on-surface-variant/10 transition-colors duration-200 cursor-pointer rounded-lg active:scale-95 group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<!-- Sidebar Footer -->
+<div class="mt-auto px-md pt-lg border-t border-outline-variant/20">
+<div class="flex items-center gap-md p-sm rounded-xl hover:bg-on-surface-variant/10 transition-all cursor-pointer group">
+<img alt="ICE-GO Admin Profile" class="w-10 h-10 rounded-full border-2 border-primary-fixed/20 object-cover" data-alt="A professional headshot of a modern executive in a sleek tech office setting. The lighting is soft and high-key, highlighting a clean-shaven face and confident expression. The overall style is minimalist and corporate, with a color palette of cool grays and crisp whites that align with a high-performance logistics software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1oFh8Sxna8gTYjjtninojzt8-zggTNsmBBwXcudOVo1LSeefxDnJdqiS594TQZGNCjA6lTh2_RXwdexZhObtDaPzboGXMHDZ-UDr9p47Nr8C1LnUJiRIQmuBSOd4mpna4iKLXKqpcf5AoyeaCeXmRBfm1IlLsDuYb2qsERa-VM--babbJ-CpI17PWIc1jmEATuncHWGALJqK6ruueBem_x0XErdT3LX6CvrewTGh0YaORr4vOYb9YK5iNj8Vg_c-pjtqDcC4TciU"/>
+<div class="flex-1 min-w-0">
+<p class="text-primary-fixed font-semibold text-sm truncate">Admin User</p>
+<p class="text-surface-variant text-xs truncate">Logistics Lead</p>
+</div>
+</div>
+<button class="mt-md w-full flex items-center justify-center gap-sm px-md py-sm text-error bg-error-container/10 hover:bg-error-container/20 rounded-lg transition-colors group">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="font-label-md text-label-md">Cerrar sesión</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width h-screen overflow-y-auto scroll-smooth">
+<!-- TopAppBar Placeholder/Integration -->
+<header class="sticky top-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant px-xl py-md flex justify-between items-center">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold">FAQs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Preguntas frecuentes del chatbot</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-xl pr-md py-sm bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Buscar pregunta..." type="text"/>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary-container hover:bg-primary px-lg py-sm rounded-lg font-semibold shadow-sm transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+<span>Nueva FAQ</span>
+</button>
+</div>
+</header>
+<div class="max-w-[1440px] mx-auto p-xl">
+<!-- Info Banner -->
+<div class="mb-xl p-md bg-secondary-container/30 border border-secondary-container rounded-xl flex items-center gap-md">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">info</span>
+</div>
+<p class="font-body-md text-on-secondary-fixed-variant">
+<span class="font-bold">Chatbot Live:</span> El chatbot de Telegram consulta estas FAQs en tiempo real para responder a los clientes de manera automatizada.
+                </p>
+</div>
+<!-- Content Grid (FAQs Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow group">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Cuáles son sus horarios?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Logística</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            Estamos abiertos de lunes a domingo de 10:00 AM a 9:00 PM. Los domingos cerramos a las 8:00 PM.
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Hacen delivery?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Pedidos</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            Por el momento solo manejamos pedidos para recoger en tienda. ¡Puedes hacer tu pedido por aquí y recogerlo cuando gustes!
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Cuánto tiempo tarda mi pedido?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Tiempo</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            Una vez confirmado tu pedido, estará listo para recoger en aproximadamente 15-20 minutos.
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Aceptan tarjeta?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Pagos</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            Aceptamos efectivo, tarjeta de débito y crédito, y transferencias SPEI.
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Tienen opciones sin azúcar?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Menú</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            ¡Sí! Contamos con una línea de helados sin azúcar añadida. Pregunta por nuestras opciones especiales.
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-[0_1px_3px_0_rgba(14,165,233,0.05),0_1px_2px_-1px_rgba(14,165,233,0.05)] hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">¿Puedo cancelar mi pedido?</h3>
+<span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Políticas</span>
+</div>
+<p class="font-body-md text-on-surface-variant flex-1 mb-md">
+                            Puedes cancelar tu pedido siempre y cuando aún esté en estatus PENDIENTE. Una vez confirmado, ya no es posible cancelar.
+                        </p>
+<div class="flex items-center justify-end gap-sm pt-md border-t border-outline-variant/30">
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Editar
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-on-surface-variant hover:text-error transition-colors font-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Eliminar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Empty State / Add New -->
+<button class="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-xl bg-surface-container-low hover:bg-surface-container-high transition-all group min-h-[160px]">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface-variant">Agregar nueva FAQ</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Floating Atmosphere Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle micro-interaction: Tilt effect on cards
+            const cards = document.querySelectorAll('.bg-surface-container-lowest');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+                
+                card.style.transition = 'transform 0.1s ease-out, box-shadow 0.2s ease-in-out';
+            });
+        });
+    </script>
+</body></html>

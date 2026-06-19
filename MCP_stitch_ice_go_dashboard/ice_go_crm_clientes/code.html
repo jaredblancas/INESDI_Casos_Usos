@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICE-GO CRM — Clientes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#003751",
+                        "surface-container": "#eaeef4",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "primary-container": "#0ea5e9",
+                        "inverse-on-surface": "#edf1f7",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#8a5100",
+                        "surface-tint": "#006591",
+                        "on-background": "#171c20",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdcbd",
+                        "primary": "#006591",
+                        "on-tertiary-container": "#4d2b00",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e4e8ee",
+                        "secondary-container": "#d0e1fb",
+                        "inverse-surface": "#2c3135",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary": "#505f76",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#2c1600",
+                        "primary-fixed-dim": "#89ceff",
+                        "tertiary-container": "#de8712",
+                        "on-surface-variant": "#3e4850",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#dee3e9",
+                        "surface-container-low": "#f0f4fa",
+                        "on-secondary-fixed": "#0b1c30",
+                        "background": "#f6faff",
+                        "surface-variant": "#dee3e9",
+                        "surface": "#f6faff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-fixed": "#c9e6ff",
+                        "outline": "#6e7881",
+                        "surface-dim": "#d6dae0",
+                        "on-surface": "#171c20",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f6faff",
+                        "tertiary-fixed-dim": "#ffb86e",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "on-secondary-container": "#54647a",
+                        "inverse-primary": "#89ceff",
+                        "outline-variant": "#bec8d2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "container-max": "1440px",
+                        "3xl": "64px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "2xl": "48px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "mono-sm": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "mono-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .card-shadow { box-shadow: 0 1px 3px 0 rgba(14, 165, 233, 0.05), 0 1px 2px -1px rgba(14, 165, 233, 0.05); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[240px] bg-inverse-surface text-inverse-on-surface flex flex-col py-lg z-50">
+<!-- Logo -->
+<div class="px-lg mb-2xl">
+<h1 class="font-headline-md text-headline-md font-black tracking-tight flex items-center gap-2">
+<span class="text-2xl">🍦</span>
+<span class="text-primary-fixed-dim">ICE-GO</span>
+</h1>
+</div>
+<!-- Nav Items -->
+<nav class="flex-grow space-y-xs">
+<a class="flex items-center gap-md px-md py-sm mx-md text-outline-variant hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Inicio</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-md text-outline-variant hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Pedidos</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-md bg-secondary-container/10 text-primary-fixed-dim rounded-lg transition-all border-l-4 border-primary-container" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md font-semibold">CRM</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-md text-outline-variant hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventario</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-md text-outline-variant hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">FAQs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-md text-outline-variant hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<!-- Footer User Section -->
+<div class="mt-auto px-lg pt-lg border-t border-white/10">
+<div class="flex items-center gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img alt="Admin User" data-alt="Close up headshot of a professional business administrator in a modern office, wearing a stylish navy blue sweater. The lighting is soft and natural, with a clean minimalist background. High-end professional portrait photography style for a modern enterprise application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxWZS1htndOesu2SY3ZsZZ7hRjgawhXT3lLwiluYifIQu8gk7XFXU8d6OReU4DQ_giqqEkZA1PJDbdckwgVpEjMcijrsqyvm8sFYTwPvx3lTFNM5Z0jAgUqHFVKnsQl-C7MtU9mqYv_WDhqzCwF77suzBqGaqfGZBex17a4d9u0WDGXfEaRogjg2ihMF2iN704WyyGoiFPbjdMOpnS6l3ffHrdDr8FlJ0Qz0hO-fWRDl1hSh_5D9k_aT86lWNEP9kx1CFzvQVUD3c"/>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-white truncate">Gestor Pro</p>
+<p class="text-[10px] text-outline-variant uppercase tracking-widest">Administrador</p>
+</div>
+</div>
+<button class="flex items-center gap-md text-outline-variant hover:text-error transition-colors w-full">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Cerrar sesión</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow ml-[240px] h-screen overflow-y-auto custom-scrollbar bg-background">
+<div class="max-w-container-max mx-auto p-lg lg:p-xl">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">CRM — Clientes</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión de clientes del negocio</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="pl-10 pr-md py-sm bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary-container w-[280px] transition-all" placeholder="Buscar por nombre, email..." type="text"/>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary-container px-lg py-sm rounded-lg font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                        Nuevo cliente
+                    </button>
+</div>
+</header>
+<!-- Stat Summary Bar -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl card-shadow flex items-center gap-md">
+<div class="p-sm bg-primary/10 text-primary rounded-lg">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Clientes totales</p>
+<p class="font-headline-md text-headline-md">34</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl card-shadow flex items-center gap-md">
+<div class="p-sm bg-tertiary/10 text-tertiary rounded-lg">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Canal principal</p>
+<p class="font-headline-md text-headline-md">Telegram <span class="text-body-md font-normal text-on-surface-variant">(82%)</span></p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl card-shadow flex items-center gap-md">
+<div class="p-sm bg-green-100 text-green-700 rounded-lg">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Ticket promedio</p>
+<p class="font-headline-md text-headline-md">$144</p>
+</div>
+</div>
+</div>
+<!-- Client Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Cliente</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Teléfono</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Canal</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Email</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Pedidos</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider">Total Gastado</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline uppercase tracking-wider text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-xs">MG</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">María González</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 1234-5678</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">maria.g@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">12 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$1,440</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xs">CR</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Carlos Ruiz</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 9876-5432</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">carlos.r@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">8 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$960</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold text-xs">AL</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Ana López</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 5555-1234</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-purple-100 text-purple-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">mic</span> Voz
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">ana.lopez@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">5 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$600</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-xs">PS</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Pedro Sánchez</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 3333-4444</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline-variant">—</td>
+<td class="px-lg py-md font-body-md text-body-md">15 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$2,100</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-xs">LG</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Laura García</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 7777-8888</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">laura.g@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">3 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$360</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-gray-500 text-white flex items-center justify-center font-bold text-xs">HD</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Héctor Díaz</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 2222-9999</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-purple-100 text-purple-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">mic</span> Voz
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">hector.d@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">7 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$840</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">RM</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Rosa Martínez</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">+52 55 4444-3333</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-sm py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                                    </span>
+</td>
+<td class="px-lg py-md font-mono-sm text-mono-sm text-outline">rosa.m@email.com</td>
+<td class="px-lg py-md font-body-md text-body-md">20 pedidos</td>
+<td class="px-lg py-md font-body-md text-body-md font-semibold text-on-surface">$2,400</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:bg-primary/10 px-md py-sm rounded-lg font-label-md text-label-md transition-all">Ver detalle</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md bg-surface-container-low/30 border-t border-outline-variant/30 flex items-center justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant">Mostrando <span class="text-on-surface font-semibold">7</span> de <span class="text-on-surface font-semibold">34</span> clientes</p>
+<div class="flex items-center gap-xs">
+<button class="p-base hover:bg-surface-container-high rounded transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex items-center gap-xs px-sm">
+<span class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white font-label-md text-label-md">1</span>
+<span class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface font-label-md text-label-md cursor-pointer transition-colors">2</span>
+<span class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface font-label-md text-label-md cursor-pointer transition-colors">3</span>
+<span class="text-outline mx-xs">...</span>
+<span class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface font-label-md text-label-md cursor-pointer transition-colors">5</span>
+</div>
+<button class="p-base hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Note / Quick Actions -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-lg flex gap-lg items-start">
+<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+<div>
+<h4 class="font-headline-md text-[16px] text-primary mb-1">Optimización de CRM</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">El 82% de tus clientes prefieren Telegram como canal de comunicación. Considera automatizar tus recordatorios de stock a través de nuestra integración de bot para mejorar la retención.</p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-lg flex flex-col justify-center items-center text-center border border-dashed border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">¿Necesitas exportar tus datos?</p>
+<button class="text-on-surface hover:bg-surface-container-highest px-xl py-sm rounded-lg font-label-md text-label-md border border-outline-variant transition-all flex items-center gap-sm">
+<span class="material-symbols-outlined">download</span>
+                        Descargar Reporte CSV
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions and hover effects
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('button').classList.add('scale-105');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('button').classList.remove('scale-105');
+            });
+        });
+
+        // Search highlight simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const name = row.querySelector('.font-semibold').textContent.toLowerCase();
+                if(name.includes(val)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

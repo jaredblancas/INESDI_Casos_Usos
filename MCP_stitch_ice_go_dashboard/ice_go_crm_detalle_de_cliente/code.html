@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICE-GO CRM — Detalle del Cliente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f6faff",
+                        "primary-fixed": "#c9e6ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb86e",
+                        "on-primary-fixed": "#001e2f",
+                        "inverse-surface": "#2c3135",
+                        "surface-container-highest": "#dee3e9",
+                        "surface-variant": "#dee3e9",
+                        "secondary-container": "#d0e1fb",
+                        "background": "#f6faff",
+                        "primary": "#006591",
+                        "on-surface": "#171c20",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6e7881",
+                        "tertiary-container": "#de8712",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "outline-variant": "#bec8d2",
+                        "on-tertiary-fixed": "#2c1600",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#89ceff",
+                        "on-primary-container": "#003751",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eaeef4",
+                        "inverse-on-surface": "#edf1f7",
+                        "surface-container-high": "#e4e8ee",
+                        "surface-tint": "#006591",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-error-container": "#93000a",
+                        "secondary": "#505f76",
+                        "on-tertiary-container": "#4d2b00",
+                        "on-secondary-container": "#54647a",
+                        "secondary-fixed": "#d3e4fe",
+                        "tertiary-fixed": "#ffdcbd",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "primary-container": "#0ea5e9",
+                        "on-surface-variant": "#3e4850",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface": "#f6faff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary": "#8a5100",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#89ceff",
+                        "surface-container-low": "#f0f4fa",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#171c20",
+                        "surface-dim": "#d6dae0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sidebar-width": "240px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "3xl": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "mono-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .sidebar-active-pill {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 1.5rem;
+            width: 3px;
+            background-color: #0ea5e9;
+            border-radius: 0 4px 4px 0;
+        }
+        .card-shadow {
+            box-shadow: 0 1px 3px 0 rgba(14, 165, 233, 0.05), 0 1px 2px -1px rgba(14, 165, 233, 0.05);
+        }
+        .status-pill {
+            @apply px-sm py-xs rounded-full font-label-md text-[10px] uppercase tracking-wider;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-surface min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface text-on-primary border-r border-outline/20 flex flex-col z-50">
+<div class="px-lg py-xl">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary-fixed-dim tracking-tight flex items-center gap-xs">
+<span class="text-3xl">🍦</span> ICE-GO
+            </h1>
+</div>
+<nav class="flex-1 px-md space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-outline-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Inicio</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-outline-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Pedidos</span>
+</a>
+<a class="relative flex items-center gap-md px-md py-sm rounded-lg bg-secondary-container/10 text-primary-fixed-dim transition-all" href="#">
+<div class="sidebar-active-pill"></div>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md font-semibold">CRM</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-outline-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">icecream</span>
+<span class="font-label-md text-label-md">Inventario</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-outline-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">FAQs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-outline-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="p-lg mt-auto border-t border-outline/10">
+<div class="flex items-center gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold shadow-lg">
+                    AD
+                </div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Admin</p>
+<p class="text-[10px] text-outline-variant uppercase tracking-widest">Enterprise</p>
+</div>
+</div>
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg text-error hover:bg-error/10 transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Cerrar sesión</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex-1 p-lg max-w-container-max mx-auto">
+<!-- Header & Breadcrumbs -->
+<header class="mb-2xl">
+<div class="flex items-center gap-sm text-on-surface-variant font-label-md text-label-md mb-md">
+<button class="hover:text-primary transition-colors flex items-center">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+</button>
+<span>CRM</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-semibold">Clientes</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-lg">
+<div class="w-24 h-24 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-4xl font-bold border-4 border-white shadow-xl">
+                        MG
+                    </div>
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">María González</h2>
+<div class="flex items-center gap-sm mt-xs">
+<p class="font-body-md text-body-md text-on-surface-variant">Cliente desde enero 2026</p>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="flex items-center gap-xs font-body-md text-body-md text-primary font-medium">
+<span class="material-symbols-outlined text-sm">send</span> Telegram
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="px-lg py-sm font-label-md text-label-md font-semibold text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container-low transition-all">
+                        Editar
+                    </button>
+<button class="px-lg py-sm font-label-md text-label-md font-semibold text-error border border-error/20 rounded-lg hover:bg-error/5 transition-all">
+                        Eliminar
+                    </button>
+</div>
+</div>
+</header>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-2xl">
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border-l-4 border-primary-container">
+<p class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest mb-xs">Total Pedidos</p>
+<p class="font-headline-lg text-headline-lg font-bold text-on-surface">12</p>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border-l-4 border-green-500">
+<p class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest mb-xs">Total Gastado</p>
+<p class="font-headline-lg text-headline-lg font-bold text-on-surface">$1,440</p>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border-l-4 border-amber-500">
+<p class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest mb-xs">Ticket Promedio</p>
+<p class="font-headline-lg text-headline-lg font-bold text-on-surface">$120</p>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border-l-4 border-purple-500">
+<p class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest mb-xs">Producto Favorito</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface truncate">Helado de Mango</p>
+</div>
+</section>
+<!-- Two Column Content -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-lg">
+<!-- Left: Order History -->
+<section class="lg:col-span-6">
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-outline-variant/30 overflow-hidden">
+<div class="p-lg border-b border-outline-variant/20 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Historial de pedidos</h3>
+<button class="text-primary font-label-md text-label-md font-semibold hover:underline">Ver todos</button>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-lg py-md font-label-md text-[11px] text-on-surface-variant uppercase tracking-widest"># Pedido</th>
+<th class="px-lg py-md font-label-md text-[11px] text-on-surface-variant uppercase tracking-widest">Productos</th>
+<th class="px-lg py-md font-label-md text-[11px] text-on-surface-variant uppercase tracking-widest">Fecha</th>
+<th class="px-lg py-md font-label-md text-[11px] text-on-surface-variant uppercase tracking-widest">Estado</th>
+<th class="px-lg py-md font-label-md text-[11px] text-on-surface-variant uppercase tracking-widest text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md font-mono-sm text-mono-sm text-primary font-medium">ORD-241202-4521</td>
+<td class="px-lg py-md font-body-md text-body-md">Fresa ×2, Mango ×1</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">16 jun 2026</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase">Confirmado</span>
+</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$180</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md font-mono-sm text-mono-sm text-primary font-medium">ORD-241202-4508</td>
+<td class="px-lg py-md font-body-md text-body-md">Vainilla ×3</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">10 jun 2026</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded bg-blue-100 text-blue-700 text-[10px] font-bold uppercase">Entregado</span>
+</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$120</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md font-mono-sm text-mono-sm text-primary font-medium">ORD-241202-4490</td>
+<td class="px-lg py-md font-body-md text-body-md">Chocolate ×2</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">3 jun 2026</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded bg-blue-100 text-blue-700 text-[10px] font-bold uppercase">Entregado</span>
+</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$160</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md font-mono-sm text-mono-sm text-primary font-medium">ORD-241202-4471</td>
+<td class="px-lg py-md font-body-md text-body-md">Mango ×4</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">28 may 2026</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded bg-red-100 text-red-700 text-[10px] font-bold uppercase">Rechazado</span>
+</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">—</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-lg py-md font-mono-sm text-mono-sm text-primary font-medium">ORD-241202-4450</td>
+<td class="px-lg py-md font-body-md text-body-md">Limón ×2</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">20 may 2026</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded bg-blue-100 text-blue-700 text-[10px] font-bold uppercase">Entregado</span>
+</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Right: Client Data -->
+<section class="lg:col-span-4">
+<div class="bg-surface-container-lowest p-xl rounded-xl card-shadow border border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md mb-xl">Datos del cliente</h3>
+<form class="space-y-lg" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm uppercase tracking-wider">Nombre completo</label>
+<input class="w-full bg-surface-container-low border-transparent rounded-lg px-md py-sm font-body-md text-body-md focus:bg-white focus:border-primary-container focus:ring-0 transition-all" type="text" value="María González"/>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm uppercase tracking-wider">Teléfono</label>
+<input class="w-full bg-surface-container-low border-transparent rounded-lg px-md py-sm font-body-md text-body-md focus:bg-white focus:border-primary-container transition-all" type="text" value="+52 55 1234-5678"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm uppercase tracking-wider">Canal</label>
+<div class="flex items-center gap-sm bg-primary-container/10 border border-primary-container/20 rounded-lg px-md py-sm">
+<span class="material-symbols-outlined text-primary text-lg">send</span>
+<span class="font-body-md text-body-md text-primary-container font-semibold">Telegram</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm uppercase tracking-wider">Email</label>
+<input class="w-full bg-surface-container-low border-transparent rounded-lg px-md py-sm font-body-md text-body-md focus:bg-white focus:border-primary-container transition-all" type="email" value="maria.g@email.com"/>
+</div>
+<div class="pt-md space-y-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md text-label-md">Última compra:</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">Hace 2 días</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md text-label-md">Canal preferido:</span>
+<span class="font-body-md text-body-md font-medium text-primary">Telegram</span>
+</div>
+</div>
+<button class="w-full mt-xl bg-primary-container text-white font-headline-md text-headline-md py-md rounded-xl hover:bg-primary transition-all shadow-md active:scale-[0.98]">
+                            Guardar cambios
+                        </button>
+</form>
+</div>
+<!-- Atmospheric Flare/Badge -->
+<div class="mt-lg bg-gradient-to-br from-primary-container to-primary p-lg rounded-xl text-white relative overflow-hidden group">
+<div class="relative z-10">
+<p class="font-label-md text-[10px] uppercase tracking-widest opacity-80 mb-sm">Programa de Lealtad</p>
+<h4 class="font-headline-md text-headline-md mb-xs">Nivel: Ice-Premium</h4>
+<p class="font-body-md text-body-md opacity-90">Faltan 2 pedidos para el próximo regalo.</p>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-20 transform -rotate-12 group-hover:scale-110 transition-transform duration-500">
+                        icecream
+                    </span>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('scale-[0.995]', 'bg-primary-container/10');
+                setTimeout(() => {
+                    row.classList.remove('scale-[0.995]', 'bg-primary-container/10');
+                }, 200);
+            });
+        });
+
+        // Search bar focus simulation
+        window.addEventListener('keydown', (e) => {
+            if (e.metaKey && e.key === 'k') {
+                e.preventDefault();
+                console.log('Search focused');
+            }
+        });
+    </script>
+</body></html>
